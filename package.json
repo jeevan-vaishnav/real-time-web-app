@@ -4,11 +4,16 @@
   "description": "Chat App | web socket.io | nodejs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^5.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
   }
 }
