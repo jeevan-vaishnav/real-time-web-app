@@ -1,13 +1,18 @@
 const socket =  io() //send event and recv event
 
-socket.on('countUpdated',(count)=>{
-    console.log("The count has been update!", count)
+// socket.on('countUpdated',(count)=>{
+//     console.log("The count has been update!", count)
 
+// })
+
+// document.querySelector('#increment').addEventListener('click',()=>{
+//     console.log('Clicked')
+//     socket.emit('increment');
+// });
+
+socket.on('message',(msg)=>{
+    console.log(msg)
 })
 
-document.querySelector('#increment').addEventListener('click',()=>{
-    console.log('Clicked')
-    socket.emit('increment');
-});
 
 
