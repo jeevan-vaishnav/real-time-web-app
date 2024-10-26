@@ -18,14 +18,11 @@ io.on('connection',(socket)=>{
     console.log('New websocket connection')
 
     socket.emit('message',"Welcome You")
-    
-    // socket.emit('countUpdated',count)
 
-    // socket.on('increment',()=>{
-    //     count++;
-    //     // socket.emit('countUpdated',count)
-    //     io.emit('countUpdate',count)
-    // })
+    socket.on('sendMessage',(msg)=>{
+        io.emit('message',msg)
+    })
+    
 })
 
 server.listen(port, () => {
