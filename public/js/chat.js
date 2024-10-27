@@ -1,23 +1,37 @@
 const socket = io(); //send event and recv event
 
+//elements
+const $messageForm = document.querySelector('#message-form');
+const $messageFormInput = $messageForm.querySelector('input');
+const $messageFormButton = $messageForm.querySelector('button');
+const $locationButton = document.querySelector('#send-location'); 
 socket.on("message", (msg) => {
   console.log(msg);
 });
 
-document.querySelector("#message-form").addEventListener("submit", (e) => {
+$messageForm.addEventListener("submit", (e) => {
   e.preventDefault();
+  //disable
+  $messageFormButton.setAttribute('disabled','disabled');
 
-  const message = e.target.elements.messageInput.value;
+  const message = e.target.elements.messageInput.value
 
   socket.emit("sendMessage", message, (error) => {
+    $messageFormButton.removeAttribute('disabled');
+    $messageFormInput.value = ''
+    $messageFormInput.focus()
     if (error) {
       return console.log(error);
     }
+
     console.log("Message delivered!");
   });
 });
 
 document.querySelector("#send-location").addEventListener("click", () => {
+
+  $locationButton.setAttribute('disabled',"disabled")
+
   if (!navigator.geolocation) {
     return alert("Geolocation not supported by your browser");
   }
@@ -27,6 +41,7 @@ document.querySelector("#send-location").addEventListener("click", () => {
       latitude: position.coords.latitude,
       longitude: position.coords.longitude,
     }, () => {
+        $locationButton.removeAttribute('disabled');
         console.log('Location shared!')
     });
   });
