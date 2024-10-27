@@ -20,8 +20,9 @@ io.on('connection',(socket)=>{
     socket.emit('message',"Welcome folks!!")
     socket.broadcast.emit('message',"A new user has joined!")
 
-    socket.on('sendMessage',(msg)=>{
+    socket.on('sendMessage',(msg,callback) =>{
         io.emit('message',msg)
+        callback('Delivered!');
     })
 
     socket.on('sendLocation',(coords)=>{
