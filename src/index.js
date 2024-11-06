@@ -35,7 +35,7 @@ io.on("connection", (socket) => {
       return callback("Profanity is not allowed!");
     }
 
-    io.emit("message", generateMessage(msg));
+    io.to('Center City').emit("message", generateMessage(msg));
     callback();
   });
 
