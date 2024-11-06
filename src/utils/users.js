@@ -2,10 +2,10 @@ const users = [];
 
 //addUser, removeUser,getUser,getUsersInRoom
 
-const addUser = ({ _id, username, room }) => {
+const addUser = ({id, username, room }) => {
   //temp variable with trim white_space
-   username = username.trim().toLowerCase();
-   room = room.trim().toLowerCase();
+  username = username.trim().toLowerCase();
+  room = room.trim().toLowerCase();
 
   //User Validation
   if (!username || !room) {
@@ -13,32 +13,45 @@ const addUser = ({ _id, username, room }) => {
   }
 
   //checking existing user
-
-  const exitingUser = users.find((user)=>{
-        return user.username === username && user.room === room
-  })
-
+  const exitingUser = users.find((user) => {
+    return user.username === username && user.room === room;
+  });
   //validate username
-  if(exitingUser){
+  if (exitingUser) {
     return {
-        error:"Username is use in"
-    }
+      error: "Username is use in",
+    };
   }
 
-  //store user 
-
-  const user ={_id, username, room};
+  //store user
+  const user = { id, username, room };
   users.push(user);
 
-  return users;
+  return { user };
 };
 
-const user = addUser({
-  _id: "102",
+//Remove User
+const removeUser = (id) => {
+  const index = users.findIndex((user) => {
+    return user.id === id;
+  });
+
+  console.log(index)
+
+  if (index !== -1) {
+    return users.splice(index, 1)[0];
+  }
+};
+
+
+addUser({
+  id: "102",
   username: "Jeevan Vaishnav",
   room: "AuraA",
 });
-const user2 = addUser({ _id: "", username: "", room: "" });
 
-console.log(user);
-console.log(user2);
+console.log(users);
+
+const removeUserByID = removeUser("102");
+console.log(removeUserByID)
+console.log(users)
