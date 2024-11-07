@@ -2,7 +2,7 @@ const users = [];
 
 //addUser, removeUser,getUser,getUsersInRoom
 
-const addUser = ({id, username, room }) => {
+const addUser = ({ id, username, room }) => {
   //temp variable with trim white_space
   username = username.trim().toLowerCase();
   room = room.trim().toLowerCase();
@@ -36,7 +36,7 @@ const removeUser = (id) => {
     return user.id === id;
   });
 
-  console.log(index)
+  console.log(index);
 
   if (index !== -1) {
     return users.splice(index, 1)[0];
@@ -44,14 +44,18 @@ const removeUser = (id) => {
 };
 
 
-addUser({
-  id: "102",
-  username: "Jeevan Vaishnav",
-  room: "AuraA",
-});
+//get user
+const getUserById = (id) => {
+    const user = users.find((user) => {
+      return Number(user.id) === Number(id);
+    });
+    return user;
+  };
 
-console.log(users);
+const getRoomUser = (id,room) =>{
+   
+    return users.filter((user) => user.room === room.trim().toLowerCase());
+}  
 
-const removeUserByID = removeUser("102");
-console.log(removeUserByID)
-console.log(users)
+
+module.exports = { addUser,getUserById,getRoomUser,removeUser };
