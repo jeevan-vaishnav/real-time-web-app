@@ -3,6 +3,7 @@ const users = [];
 //addUser, removeUser,getUser,getUsersInRoom
 
 const addUser = ({ id, username, room }) => {
+    console.log("Calling AddUser:", {id,username,room})
   //temp variable with trim white_space
   username = username.trim().toLowerCase();
   room = room.trim().toLowerCase();
@@ -26,7 +27,7 @@ const addUser = ({ id, username, room }) => {
   //store user
   const user = { id, username, room };
   users.push(user);
-
+  console.log(users);
   return { user };
 };
 
