@@ -48,8 +48,9 @@ const removeUser = (id) => {
 //get user
 const getUserById = (id) => {
     const user = users.find((user) => {
-      return Number(user.id) === Number(id);
+      return user.id === id;
     });
+    console.log(user?.id)
     return user;
   };
 
