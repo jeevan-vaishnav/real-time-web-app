@@ -3,7 +3,6 @@ const users = [];
 //addUser, removeUser,getUser,getUsersInRoom
 
 const addUser = ({ id, username, room }) => {
-    console.log("Calling AddUser:", {id,username,room})
   //temp variable with trim white_space
   username = username.trim().toLowerCase();
   room = room.trim().toLowerCase();
@@ -27,7 +26,6 @@ const addUser = ({ id, username, room }) => {
   //store user
   const user = { id, username, room };
   users.push(user);
-  console.log(users);
   return { user };
 };
 
@@ -36,8 +34,6 @@ const removeUser = (id) => {
   const index = users.findIndex((user) => {
     return user.id === id;
   });
-
-  console.log(index);
 
   if (index !== -1) {
     return users.splice(index, 1)[0];
@@ -50,12 +46,10 @@ const getUserById = (id) => {
     const user = users.find((user) => {
       return user.id === id;
     });
-    console.log(user?.id)
     return user;
   };
 
-const getRoomUser = (id,room) =>{
-   
+const getRoomUser = (room) =>{
     return users.filter((user) => user.room === room.trim().toLowerCase());
 }  
 

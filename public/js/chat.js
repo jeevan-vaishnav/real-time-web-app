@@ -10,9 +10,20 @@ const $messages = document.querySelector("#messages");
 //Templates
 const messageTemplate = document.querySelector("#message-template").innerHTML;
 const locationMessageTemplate = document.querySelector('#locationMessage-template').innerHTML
+const sidebarTemplate = document.querySelector('#sidebar-template').innerHTML;
 
 //options
 const {username,room} = Qs.parse(location.search,{ignoreQueryPrefix:true})
+
+socket.on('roomData',({room,users})=>{
+  console.log(room)
+  console.log(users)
+  const html = Mustache.render(sidebarTemplate,{
+    room,
+    users
+    });
+  document.querySelector('#sidebar').innerHTML = html
+})
 
 socket.on("message", (msg) => {
   const html = Mustache.render(messageTemplate, { message: msg.text,username:msg.username,createAt:moment(msg.createAt).format('h:mm a') });
