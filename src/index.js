@@ -74,7 +74,7 @@ io.on("connection", (socket) => {
       "locationMessage",
       generateLocationMessage(
         `https://google.com/maps?q=${coords.latitude},${coords.longitude}`,
-        user.username
+        user?.username
       )
     );
     callback();
@@ -88,9 +88,9 @@ io.on("connection", (socket) => {
         generateMessage('Admin',`${user.username} user has left!`)
       );
     }
-    io.to(user.room).emit('roomData',{
-      room:user.room,
-      users:getRoomUser(user.room)
+    io.to(user?.room).emit('roomData',{
+      room:user?.room,
+      users:getRoomUser(user?.room)
     })
   });
 });
